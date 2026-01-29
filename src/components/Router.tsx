@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
+import AiBubble from './AiBubble';
 
 import HomePageEn from './pages/en/HomePageEn';
 import WhatIsSatPageEn from './pages/en/WhatIsSatPageEn';
@@ -46,6 +47,7 @@ function Layout() {
     <>
       <ScrollToTop />
       <Outlet />
+      <AiBubble />
     </>
   );
 }
