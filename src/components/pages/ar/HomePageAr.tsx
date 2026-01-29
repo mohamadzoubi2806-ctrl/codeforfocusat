@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { MessageCircle, BookOpen, Clock, Zap } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import HeroTitle from '../../layout/HeroTitle';
 
 export default function HomePageAr() {
   return (
@@ -10,19 +11,7 @@ export default function HomePageAr() {
 
       <section className="min-h-screen flex items-center justify-center px-4 py-16">
         <div className="max-w-[100rem] mx-auto w-full">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading text-gray-900 mb-6 bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent">
-              مركز Focus للتعليم
-            </h1>
-            <p className="text-2xl md:text-3xl font-paragraph text-gray-700 mb-8">
-              التحضير المهني لامتحان Digital SAT
-            </p>
-          </motion.div>
+          <HeroTitle />
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
