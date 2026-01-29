@@ -30,6 +30,7 @@ import UniversitiesPageHe from './pages/he/UniversitiesPageHe';
 import AiPageEn from './pages/en/AiPageEn';
 import AiPageAr from './pages/ar/AiPageAr';
 import AiPageHe from './pages/he/AiPageHe';
+import AiBubble from './layout/AiBubble';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -46,6 +47,7 @@ function Layout() {
     <>
       <ScrollToTop />
       <Outlet />
+      <AiBubble />
     </>
   );
 }
