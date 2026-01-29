@@ -1,9 +1,11 @@
-import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useLanguage } from '../contexts/LanguageContext';
 
-import LanguageSelectionPage from './pages/LanguageSelectionPage';
-import AiBubble from './AiBubble';
+import Header from './layout/Header';
+import Footer from './layout/Footer';
+import HomePage from './pages/HomePage';
 
 import HomePageEn from './pages/en/HomePageEn';
 import WhatIsSatPageEn from './pages/en/WhatIsSatPageEn';
@@ -12,7 +14,6 @@ import CoursePlanPageEn from './pages/en/CoursePlanPageEn';
 import WhyFocusPageEn from './pages/en/WhyFocusPageEn';
 import ContactPageEn from './pages/en/ContactPageEn';
 import UniversitiesPageEn from './pages/en/UniversitiesPageEn';
-import AiPageEn from './pages/en/AiPageEn';
 
 import HomePageAr from './pages/ar/HomePageAr';
 import WhatIsSatPageAr from './pages/ar/WhatIsSatPageAr';
@@ -21,7 +22,6 @@ import CoursePlanPageAr from './pages/ar/CoursePlanPageAr';
 import WhyFocusPageAr from './pages/ar/WhyFocusPageAr';
 import ContactPageAr from './pages/ar/ContactPageAr';
 import UniversitiesPageAr from './pages/ar/UniversitiesPageAr';
-import AiPageAr from './pages/ar/AiPageAr';
 
 import HomePageHe from './pages/he/HomePageHe';
 import WhatIsSatPageHe from './pages/he/WhatIsSatPageHe';
@@ -30,7 +30,6 @@ import CoursePlanPageHe from './pages/he/CoursePlanPageHe';
 import WhyFocusPageHe from './pages/he/WhyFocusPageHe';
 import ContactPageHe from './pages/he/ContactPageHe';
 import UniversitiesPageHe from './pages/he/UniversitiesPageHe';
-import AiPageHe from './pages/he/AiPageHe';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -44,12 +43,57 @@ function ScrollToTop() {
 
 function Layout() {
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <ScrollToTop />
-      <AiBubble />
-      <Outlet />
-    </>
+      <Header />
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
   );
+}
+
+function WhatIsSatPage() {
+  const { language } = useLanguage();
+  if (language === 'ar') return <WhatIsSatPageAr />;
+  if (language === 'he') return <WhatIsSatPageHe />;
+  return <WhatIsSatPageEn />;
+}
+
+function ComparisonPage() {
+  const { language } = useLanguage();
+  if (language === 'ar') return <ComparisonPageAr />;
+  if (language === 'he') return <ComparisonPageHe />;
+  return <ComparisonPageEn />;
+}
+
+function CoursePlanPage() {
+  const { language } = useLanguage();
+  if (language === 'ar') return <CoursePlanPageAr />;
+  if (language === 'he') return <CoursePlanPageHe />;
+  return <CoursePlanPageEn />;
+}
+
+function WhyFocusPage() {
+  const { language } = useLanguage();
+  if (language === 'ar') return <WhyFocusPageAr />;
+  if (language === 'he') return <WhyFocusPageHe />;
+  return <WhyFocusPageEn />;
+}
+
+function ContactPage() {
+  const { language } = useLanguage();
+  if (language === 'ar') return <ContactPageAr />;
+  if (language === 'he') return <ContactPageHe />;
+  return <ContactPageEn />;
+}
+
+function UniversitiesPage() {
+  const { language } = useLanguage();
+  if (language === 'ar') return <UniversitiesPageAr />;
+  if (language === 'he') return <UniversitiesPageHe />;
+  return <UniversitiesPageEn />;
 }
 
 const router = createBrowserRouter([
@@ -59,43 +103,14 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <LanguageSelectionPage />,
+        element: <HomePage />,
       },
-      // English Routes
-      { path: "en", element: <HomePageEn /> },
-      { path: "en/what-is-sat", element: <WhatIsSatPageEn /> },
-      { path: "en/comparison", element: <ComparisonPageEn /> },
-      { path: "en/course-plan", element: <CoursePlanPageEn /> },
-      { path: "en/why-focus", element: <WhyFocusPageEn /> },
-      { path: "en/contact", element: <ContactPageEn /> },
-      { path: "en/universities", element: <UniversitiesPageEn /> },
-      { path: "en/ai-tutor", element: <AiPageEn /> },
-
-      // Arabic Routes
-      { path: "ar", element: <HomePageAr /> },
-      { path: "ar/what-is-sat", element: <WhatIsSatPageAr /> },
-      { path: "ar/comparison", element: <ComparisonPageAr /> },
-      { path: "ar/course-plan", element: <CoursePlanPageAr /> },
-      { path: "ar/why-focus", element: <WhyFocusPageAr /> },
-      { path: "ar/contact", element: <ContactPageAr /> },
-      { path: "ar/universities", element: <UniversitiesPageAr /> },
-      { path: "ar/ai-tutor", element: <AiPageAr /> },
-
-      // Hebrew Routes
-      { path: "he", element: <HomePageHe /> },
-      { path: "he/what-is-sat", element: <WhatIsSatPageHe /> },
-      { path: "he/comparison", element: <ComparisonPageHe /> },
-      { path: "he/course-plan", element: <CoursePlanPageHe /> },
-      { path: "he/why-focus", element: <WhyFocusPageHe /> },
-      { path: "he/contact", element: <ContactPageHe /> },
-      { path: "he/universities", element: <UniversitiesPageHe /> },
-      { path: "he/ai-tutor", element: <AiPageHe /> },
-
-      // ⚠️ Catch-all (Must ALWAYS be last)
-      {
-        path: "*",
-        element: <Navigate to="/" replace />,
-      },
+      { path: "what-is-sat", element: <WhatIsSatPage /> },
+      { path: "comparison", element: <ComparisonPage /> },
+      { path: "course-plan", element: <CoursePlanPage /> },
+      { path: "why-focus", element: <WhyFocusPage /> },
+      { path: "contact", element: <ContactPage /> },
+      { path: "universities", element: <UniversitiesPage /> },
     ],
   },
 ]);

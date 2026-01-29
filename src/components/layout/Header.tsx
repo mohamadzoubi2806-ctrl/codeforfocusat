@@ -1,103 +1,132 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sparkles } from 'lucide-react'; // Added Sparkles
+import { Menu, X, Globe } from 'lucide-react';
 import { useState } from 'react';
-
-interface HeaderProps {
-  lang: 'ar' | 'he' | 'en';
-}
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const navigationLinks = {
   ar: [
-    { label: 'الرئيسية', path: '/ar' },
-    { label: 'ما هو SAT', path: '/ar/what-is-sat' },
-    { label: 'الجامعات', path: '/ar/universities' },
-    { label: 'SAT كبديل معترف به', path: '/ar/comparison' },
-    { label: 'خطة الدورة', path: '/ar/course-plan' },
-    { label: 'مركز Focus', path: '/ar/why-focus' },
-    { label: 'اتصل بنا', path: '/ar/contact' },
-    { label: 'مساعد AI', path: '/ar/ai-tutor', isSpecial: true }, // Added AI Link
+    { label: 'الرئيسية', path: '/' },
+    { label: 'ما هو SAT', path: '/what-is-sat' },
+    { label: 'الجامعات', path: '/universities' },
+    { label: 'SAT كبديل', path: '/comparison' },
+    { label: 'خطة الدورة', path: '/course-plan' },
+    { label: 'مركز Focus', path: '/why-focus' },
+    { label: 'اتصل بنا', path: '/contact' },
   ],
   he: [
-    { label: 'בית', path: '/he' },
-    { label: 'מה זה SAT', path: '/he/what-is-sat' },
-    { label: 'אוניברסיטאות', path: '/he/universities' },
-    { label: 'SAT כחלופה מוכרת', path: '/he/comparison' },
-    { label: 'תכנית הקורס', path: '/he/course-plan' },
-    { label: 'מרכז Focus', path: '/he/why-focus' },
-    { label: 'צור קשר', path: '/he/contact' },
-    { label: 'AI Tutor', path: '/he/ai-tutor', isSpecial: true }, // Added AI Link
+    { label: 'בית', path: '/' },
+    { label: 'מה זה SAT', path: '/what-is-sat' },
+    { label: 'אוניברסיטאות', path: '/universities' },
+    { label: 'SAT כחלופה', path: '/comparison' },
+    { label: 'תכנית הקורס', path: '/course-plan' },
+    { label: 'מרכז Focus', path: '/why-focus' },
+    { label: 'צור קשר', path: '/contact' },
   ],
   en: [
-    { label: 'Home', path: '/en' },
-    { label: 'What is SAT', path: '/en/what-is-sat' },
-    { label: 'Universities', path: '/en/universities' },
-    { label: 'SAT as Alternative', path: '/en/comparison' },
-    { label: 'Course Plan', path: '/en/course-plan' },
-    { label: 'Focus Center', path: '/en/why-focus' },
-    { label: 'Contact', path: '/en/contact' },
-    { label: 'AI Tutor', path: '/en/ai-tutor', isSpecial: true }, // Added AI Link
+    { label: 'Home', path: '/' },
+    { label: 'What is SAT', path: '/what-is-sat' },
+    { label: 'Universities', path: '/universities' },
+    { label: 'SAT as Alternative', path: '/comparison' },
+    { label: 'Course Plan', path: '/course-plan' },
+    { label: 'Why Focus', path: '/why-focus' },
+    { label: 'Contact', path: '/contact' },
   ],
 };
 
-export default function Header({ lang }: HeaderProps) {
+const languageLabels = {
+  en: 'EN',
+  ar: 'العربية',
+  he: 'עברית'
+};
+
+export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation(); // To check active link
-  const isRTL = lang === 'ar' || lang === 'he';
-  const links = navigationLinks[lang];
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const location = useLocation();
+  const { language, setLanguage, isRTL } = useLanguage();
+
+  const links = navigationLinks[language];
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="bg-white shadow-md sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          
+
           {/* Logo */}
-          <Link to={`/${lang}`} className="flex-shrink-0">
-            <img
-              src="/whatsapp_image_2025-12-31_at_02.26.34.jpeg"
-              alt="Focus Teaching Center"
-              className="h-14 w-auto"
-            />
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="relative">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg group-hover:shadow-xl transition-all duration-300 flex items-center justify-center overflow-hidden">
+                <img
+                  src="/whatsapp_image_2025-12-31_at_02.26.34.jpeg"
+                  alt="Focus SAT"
+                  className="w-12 h-12 object-cover rounded-full"
+                />
+              </div>
+              <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-orange-600 rounded-full border-2 border-white"></div>
+            </div>
+            <div className="hidden sm:block">
+              <h1 className="text-xl font-bold text-gray-900 leading-tight">Focus SAT</h1>
+              <p className="text-xs text-gray-600">Excellence in Education</p>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className={`hidden lg:flex gap-6 items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
             {links.map((link) => {
-              // Special styling for AI Button
-              if (link.isSpecial) {
-                return (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-full font-heading text-sm hover:bg-destructive transition-colors shadow-sm"
-                  >
-                    <Sparkles size={16} />
-                    {link.label}
-                  </Link>
-                );
-              }
-              
-              // Standard styling for other links
               const isActive = location.pathname === link.path;
               return (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`transition-colors font-paragraph text-base ${
-                    isActive 
-                      ? 'text-primary font-bold' 
-                      : 'text-foreground hover:text-primary'
+                  className={`transition-colors text-sm font-medium ${
+                    isActive
+                      ? 'text-orange-600 font-bold'
+                      : 'text-gray-700 hover:text-orange-600'
                   }`}
                 >
                   {link.label}
                 </Link>
               );
             })}
+
+            {/* Language Switcher - Desktop */}
+            <div className="relative">
+              <button
+                onClick={() => setLangMenuOpen(!langMenuOpen)}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors"
+                aria-label="Switch language"
+              >
+                <Globe size={18} />
+                <span className="text-sm font-medium">{languageLabels[language]}</span>
+              </button>
+
+              {langMenuOpen && (
+                <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-xl border border-gray-100 py-2">
+                  {(Object.keys(languageLabels) as Array<keyof typeof languageLabels>).map((lang) => (
+                    <button
+                      key={lang}
+                      onClick={() => {
+                        setLanguage(lang);
+                        setLangMenuOpen(false);
+                      }}
+                      className={`w-full text-left px-4 py-2 text-sm transition-colors ${
+                        language === lang
+                          ? 'bg-orange-50 text-orange-600 font-medium'
+                          : 'text-gray-700 hover:bg-gray-50'
+                      }`}
+                    >
+                      {languageLabels[lang]}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden text-foreground hover:text-primary"
+            className="lg:hidden text-gray-700 hover:text-orange-600"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -106,34 +135,47 @@ export default function Header({ lang }: HeaderProps) {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <nav className={`lg:hidden pb-4 flex flex-col gap-4 ${isRTL ? 'items-end' : 'items-start'}`}>
+          <nav className={`lg:hidden pb-4 border-t border-gray-100 pt-4 flex flex-col gap-3 ${isRTL ? 'items-end' : 'items-start'}`}>
             {links.map((link) => {
-               // Special styling for AI Button in Mobile
-               if (link.isSpecial) {
-                return (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-2 text-primary font-heading font-bold"
-                  >
-                    <Sparkles size={18} />
-                    {link.label}
-                  </Link>
-                );
-              }
-
+              const isActive = location.pathname === link.path;
               return (
                 <Link
                   key={link.path}
                   to={link.path}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-foreground hover:text-primary transition-colors font-paragraph text-base"
+                  className={`transition-colors text-sm ${
+                    isActive
+                      ? 'text-orange-600 font-bold'
+                      : 'text-gray-700 hover:text-orange-600'
+                  }`}
                 >
                   {link.label}
                 </Link>
               );
             })}
+
+            {/* Language Switcher - Mobile */}
+            <div className="border-t border-gray-100 pt-3 mt-2 w-full">
+              <div className="flex gap-3 items-center">
+                <Globe size={18} className="text-gray-600" />
+                {(Object.keys(languageLabels) as Array<keyof typeof languageLabels>).map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => {
+                      setLanguage(lang);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`px-3 py-1 rounded-md text-sm transition-colors ${
+                      language === lang
+                        ? 'bg-orange-600 text-white font-medium'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {languageLabels[lang]}
+                  </button>
+                ))}
+              </div>
+            </div>
           </nav>
         )}
       </div>

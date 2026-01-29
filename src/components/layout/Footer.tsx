@@ -1,8 +1,5 @@
 import { Mail, MessageCircle, Instagram } from 'lucide-react';
-
-interface FooterProps {
-  lang: 'ar' | 'he' | 'en';
-}
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const footerContent = {
   ar: {
@@ -25,67 +22,64 @@ const footerContent = {
   },
 };
 
-export default function Footer({ lang }: FooterProps) {
-  const isRTL = lang === 'ar' || lang === 'he';
-  const content = footerContent[lang];
+export default function Footer() {
+  const { language, isRTL } = useLanguage();
+  const content = footerContent[language];
 
   return (
-    <footer className="bg-foreground text-white mt-24 pb-28">
-      <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <footer className="bg-gray-900 text-white mt-auto">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 ${isRTL ? 'text-right' : 'text-left'}`}>
-          
-          {/* 1. WhatsApp Section */}
+
           <div>
-            <h3 className={`font-heading text-xl mb-4 flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <MessageCircle size={20} />
+            <h3 className={`text-lg font-semibold mb-4 flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <MessageCircle size={20} className="text-orange-400" />
               {content.whatsapp}
             </h3>
             <a
               href="https://wa.me/972523825927"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-light-red hover:text-primary transition-colors font-paragraph block"
+              className="text-gray-300 hover:text-orange-400 transition-colors block"
               dir="ltr"
             >
               +972 52-382-5927
             </a>
           </div>
 
-          {/* 2. Instagram Section - UPDATED LINK HERE */}
           <div>
-            <h3 className={`font-heading text-xl mb-4 flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <Instagram size={20} />
+            <h3 className={`text-lg font-semibold mb-4 flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <Instagram size={20} className="text-orange-400" />
               {content.instagram}
             </h3>
             <a
-              href="https://www.instagram.com/focus_satcenter/" 
+              href="https://www.instagram.com/focus_satcenter/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-light-red hover:text-primary transition-colors font-paragraph block"
+              className="text-gray-300 hover:text-orange-400 transition-colors block"
               dir="ltr"
             >
               @focus_satcenter
             </a>
           </div>
 
-          {/* 3. Email Section */}
           <div>
-            <h3 className={`font-heading text-xl mb-4 flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <Mail size={20} />
+            <h3 className={`text-lg font-semibold mb-4 flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <Mail size={20} className="text-orange-400" />
               {content.email}
             </h3>
             <a
               href="mailto:focus.satcenter@gmail.com"
-              className="text-light-red hover:text-primary transition-colors font-paragraph block"
+              className="text-gray-300 hover:text-orange-400 transition-colors block"
             >
               focus.satcenter@gmail.com
             </a>
           </div>
-          
+
         </div>
 
-        <div className={`border-t border-secondary pt-8 ${isRTL ? 'text-right' : 'text-left'}`}>
-          <p className="text-sm text-secondary-foreground font-paragraph">{content.copyright}</p>
+        <div className={`border-t border-gray-800 pt-8 ${isRTL ? 'text-right' : 'text-left'}`}>
+          <p className="text-sm text-gray-400">{content.copyright}</p>
         </div>
       </div>
     </footer>
