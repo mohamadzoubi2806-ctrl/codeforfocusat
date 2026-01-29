@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Target, Brain, Users, TrendingUp } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import PageTitle from '../../layout/PageTitle';
 
 export default function WhyFocusPageAr() {
   const advantages = [
@@ -32,19 +33,10 @@ export default function WhyFocusPageAr() {
       <Header />
 
       <main className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-4xl md:text-5xl font-heading text-foreground mb-4">
-            لماذا تختار مركز Focus؟
-          </h1>
-          <p className="text-lg text-secondary max-w-3xl mx-auto font-paragraph">
-            نهج واضح ومنطقي للتحضير لامتحان SAT
-          </p>
-        </motion.div>
+        <PageTitle
+          title="لماذا تختار مركز Focus؟"
+          subtitle="نهج واضح ومنطقي للتحضير لامتحان SAT"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {advantages.map((advantage, index) => {

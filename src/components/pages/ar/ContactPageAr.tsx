@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { MessageCircle, Mail, Send, Instagram } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import PageTitle from '../../layout/PageTitle';
 
 type FormData = {
   name: string;
@@ -67,17 +68,10 @@ export default function ContactPageAr() {
       <Header />
 
       <main className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-5xl md:text-6xl font-heading text-foreground mb-6">اتصل بنا</h1>
-          <p className="text-xl text-secondary max-w-4xl mx-auto font-paragraph">
-            نحن هنا للإجابة على جميع أسئلتك
-          </p>
-        </motion.div>
+        <PageTitle
+          title="اتصل بنا"
+          subtitle="نحن هنا للإجابة على جميع أسئلتك"
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <motion.div

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Clock, Zap, Globe, Calculator, RefreshCw, DollarSign, Calendar, Languages, BarChart } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import PageTitle from '../../layout/PageTitle';
 
 export default function ComparisonPageAr() {
   return (
@@ -9,19 +10,10 @@ export default function ComparisonPageAr() {
       <Header />
 
       <main className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-4xl md:text-5xl font-heading text-foreground mb-4">
-            SAT مقابل البسيخومتري
-          </h1>
-          <p className="text-lg text-secondary max-w-3xl mx-auto font-paragraph">
-            قارن بين الامتحانين واكتشف لماذا قد يكون SAT مناسباً لك
-          </p>
-        </motion.div>
+        <PageTitle
+          title="SAT مقابل البسيخومتري"
+          subtitle="قارن بين الامتحانين واكتشف لماذا قد يكون SAT مناسباً لك"
+        />
 
         <div className="overflow-x-auto mb-12">
           <motion.div

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Clock, BookOpen, Target, Users, Calendar, CheckCircle } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import PageTitle from '../../layout/PageTitle';
 
 export default function CoursePlanPageAr() {
   return (
@@ -9,19 +10,10 @@ export default function CoursePlanPageAr() {
       <Header />
 
       <main className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-4xl md:text-5xl font-heading text-foreground mb-4">
-            خطة الدورة
-          </h1>
-          <p className="text-lg text-secondary max-w-3xl mx-auto font-paragraph">
-            برنامج شامل من 50-60 ساعة مصمم لتحقيق أقصى نجاح في اختبار SAT
-          </p>
-        </motion.div>
+        <PageTitle
+          title="خطة الدورة"
+          subtitle="برنامج شامل من 50-60 ساعة مصمم لتحقيق أقصى نجاح في اختبار SAT"
+        />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

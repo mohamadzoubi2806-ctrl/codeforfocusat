@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { GraduationCap, Calculator, ExternalLink, X } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import PageTitle from '../../layout/PageTitle';
 
 // 1. Define the shape of our data locally (No external file needed)
 type University = {
@@ -93,21 +94,12 @@ export default function UniversitiesPageAr() {
       
       <main className="w-full">
         {/* Hero Section */}
-        <section className="w-full bg-primary text-primary-foreground py-16 md:py-24">
+        <section className="w-full py-16 md:py-24">
           <div className="max-w-[100rem] mx-auto px-4 md:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center"
-            >
-              <h1 className="text-4xl md:text-5xl font-heading mb-4">
-                الجامعات الإسرائيلية وقبول اختبار SAT
-              </h1>
-              <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto font-paragraph">
-                استكشف كيفية استخدام الجامعات الرائدة في إسرائيل درجات اختبار SAT في عملية القبول
-              </p>
-            </motion.div>
+            <PageTitle
+              title="الجامعات الإسرائيلية وقبول اختبار SAT"
+              subtitle="استكشف كيفية استخدام الجامعات الرائدة في إسرائيل درجات اختبار SAT في عملية القبول"
+            />
           </div>
         </section>
 

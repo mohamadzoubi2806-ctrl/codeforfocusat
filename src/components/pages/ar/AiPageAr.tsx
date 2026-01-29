@@ -349,6 +349,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Bot, User, Sparkles, AlertCircle, Mail, X } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import PageTitle from '../../layout/PageTitle';
 
 // ✅ YOUR API KEY & FORM ID
 const API_KEY = "AIzaSyDyETJgktJTtUHUWsXx8ZB8ni7Ju3I9ka4";
@@ -500,13 +501,13 @@ export default function AiPageAr() {
           )}
         </AnimatePresence>
 
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-8">
-          <div className="inline-flex items-center justify-center p-4 bg-white rounded-full shadow-sm mb-4">
-            <Sparkles className="text-primary w-8 h-8" />
-          </div>
-          <h1 className="text-3xl md:text-4xl font-heading text-foreground mb-2">مساعد Focus الذكي</h1>
-          <p className="text-secondary font-paragraph">اسألني عن الرياضيات، الإنجليزي، أو اطلب جدول دراسي</p>
-        </motion.div>
+        <div className="inline-flex items-center justify-center p-4 bg-white rounded-full shadow-sm mb-4 mx-auto">
+          <Sparkles className="text-primary w-8 h-8" />
+        </div>
+        <PageTitle
+          title="مساعد Focus الذكي"
+          subtitle="اسألني عن الرياضيات، الإنجليزي، أو اطلب جدول دراسي"
+        />
 
         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden min-h-[500px] flex flex-col relative">
           
