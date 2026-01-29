@@ -1,12 +1,29 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 export default function AiBubble() {
   const location = useLocation();
   const currentPath = location.pathname;
+  const [isDragging, setIsDragging] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const isAiPage = currentPath.includes('/ai-tutor');
+
+  useEffect(() => {
+    const savedPosition = localStorage.getItem('aiBubblePosition');
+    if (savedPosition) {
+      setPosition(JSON.parse(savedPosition));
+    }
+  }, []);
+
+  const handleDragEnd = (_event: any, info: any) => {
+    const newPosition = { x: info.point.x, y: info.point.y };
+    setPosition(newPosition);
+    localStorage.setItem('aiBubblePosition', JSON.stringify(newPosition));
+    setIsDragging(false);
+  };
 
   if (isAiPage) {
     return null;
@@ -16,12 +33,17 @@ export default function AiBubble() {
 
   return (
     <motion.div
+      drag
+      dragMomentum={false}
+      dragElastic={0.1}
+      onDragStart={() => setIsDragging(true)}
+      onDragEnd={handleDragEnd}
       initial={{ scale: 0, opacity: 0 }}
       animate={{
         scale: 1,
         opacity: 1,
-        y: [0, -15, 0],
-        x: [0, -5, 0]
+        y: isDragging ? 0 : [0, -15, 0],
+        x: isDragging ? 0 : [0, -5, 0]
       }}
       transition={{
         scale: { delay: 0.5, type: 'spring', stiffness: 260, damping: 20 },
@@ -37,7 +59,11 @@ export default function AiBubble() {
           ease: 'easeInOut'
         }
       }}
-      className="fixed top-32 right-4 z-50 flex items-center gap-3"
+      style={{
+        x: position.x,
+        y: position.y
+      }}
+      className="fixed top-32 right-4 z-50 flex items-center gap-3 cursor-move"
     >
       <motion.div
         initial={{ x: 20, opacity: 0 }}
@@ -52,7 +78,7 @@ export default function AiBubble() {
 
       <motion.div
         animate={{
-          rotate: [0, 5, -5, 0]
+          rotate: isDragging ? 0 : [0, 5, -5, 0]
         }}
         transition={{
           duration: 5,
@@ -63,6 +89,7 @@ export default function AiBubble() {
         <Link
           to={aiRoute}
           className="flex items-center justify-center w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
+          onClick={(e) => isDragging && e.preventDefault()}
         >
           <Sparkles className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
           <motion.div
