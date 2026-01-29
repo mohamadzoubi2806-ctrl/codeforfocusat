@@ -1,26 +1,31 @@
-import { Bot } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function AiBubble() {
   const { language } = useLanguage();
 
-  const tooltipText = {
-    en: 'AI Tutor',
-    ar: 'المعلم الذكي',
-    he: 'מורה AI'
+  const buttonText = {
+    en: 'Ask Our AI',
+    ar: 'اسأل الذكاء الاصطناعي',
+    he: 'שאל את ה-AI'
   };
 
   return (
     <Link
       to="/ai-tutor"
-      className="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full shadow-2xl hover:shadow-blue-500/50 hover:scale-110 transition-all duration-300 group"
-      aria-label={tooltipText[language]}
+      className="fixed bottom-8 right-8 z-50 flex items-center gap-3 group"
+      aria-label="AI Tutor"
     >
-      <Bot className="w-8 h-8" />
-      <span className="absolute bottom-full right-0 mb-2 px-3 py-1 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-        {tooltipText[language]}
-      </span>
+      <div className="bg-white text-gray-900 px-6 py-3 rounded-full shadow-lg border-2 border-blue-500 font-semibold text-base opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        {buttonText[language]}
+      </div>
+      <div className="relative">
+        <div className="bg-gradient-to-br from-blue-600 to-purple-600 text-white p-5 rounded-full shadow-xl hover:scale-110 transition-transform duration-300">
+          <Sparkles className="w-7 h-7" />
+        </div>
+        <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white"></div>
+      </div>
     </Link>
   );
 }
