@@ -48,7 +48,7 @@ export default function Header() {
   const links = navigationLinks[language];
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
+    <header className="bg-white shadow-md sticky top-0 z-[60]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
 
@@ -101,7 +101,7 @@ export default function Header() {
               </button>
 
               {langMenuOpen && (
-                <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-xl border border-gray-100 py-2">
+                <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-[70]">
                   {(Object.keys(languageLabels) as Array<keyof typeof languageLabels>).map((lang) => (
                     <button
                       key={lang}
