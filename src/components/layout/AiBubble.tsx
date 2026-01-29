@@ -25,12 +25,13 @@ export default function AiBubble() {
         const newX = e.clientX - dragStart.x;
         const newY = e.clientY - dragStart.y;
 
+        const minY = 80;
         const maxX = window.innerWidth - 280;
         const maxY = window.innerHeight - 80;
 
         setPosition({
           x: Math.max(0, Math.min(newX, maxX)),
-          y: Math.max(0, Math.min(newY, maxY))
+          y: Math.max(minY, Math.min(newY, maxY))
         });
       }
     };
