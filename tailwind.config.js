@@ -24,7 +24,7 @@ export default {
         'light-orange': '#FFF4ED',
         destructive: '#FF6B35',
         'destructive-foreground': '#FFFFFF',
-        background: '#FFFBF7',
+        background: '#F0F4F8',
         secondary: '#4A90E2',
         foreground: '#1E293B',
         'secondary-foreground': '#FFFFFF',
