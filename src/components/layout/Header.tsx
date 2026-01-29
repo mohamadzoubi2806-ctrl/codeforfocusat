@@ -71,17 +71,17 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className={`hidden lg:flex gap-6 items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
+          <nav className={`hidden lg:flex gap-8 items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
             {links.map((link) => {
               const isActive = location.pathname === link.path;
               return (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`transition-colors text-sm font-medium ${
+                  className={`transition-all duration-200 text-base font-semibold px-3 py-2 rounded-lg ${
                     isActive
-                      ? 'text-orange-600 font-bold'
-                      : 'text-gray-700 hover:text-orange-600'
+                      ? 'text-orange-600 bg-orange-50'
+                      : 'text-gray-800 hover:text-orange-600 hover:bg-orange-50'
                   }`}
                 >
                   {link.label}
@@ -135,7 +135,7 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <nav className={`lg:hidden pb-4 border-t border-gray-100 pt-4 flex flex-col gap-3 ${isRTL ? 'items-end' : 'items-start'}`}>
+          <nav className={`lg:hidden pb-4 border-t border-gray-100 pt-4 flex flex-col gap-2 ${isRTL ? 'items-end' : 'items-start'}`}>
             {links.map((link) => {
               const isActive = location.pathname === link.path;
               return (
@@ -143,11 +143,11 @@ export default function Header() {
                   key={link.path}
                   to={link.path}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`transition-colors text-sm ${
+                  className={`transition-all duration-200 text-base font-semibold px-4 py-3 rounded-lg w-full ${
                     isActive
-                      ? 'text-orange-600 font-bold'
-                      : 'text-gray-700 hover:text-orange-600'
-                  }`}
+                      ? 'text-orange-600 bg-orange-50'
+                      : 'text-gray-800 hover:text-orange-600 hover:bg-orange-50'
+                  } ${isRTL ? 'text-right' : 'text-left'}`}
                 >
                   {link.label}
                 </Link>
