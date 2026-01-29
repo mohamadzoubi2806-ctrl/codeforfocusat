@@ -17,7 +17,7 @@ export default function AiBubble() {
       className="fixed bottom-8 right-8 z-50 flex items-center gap-3 group"
       aria-label="AI Tutor"
     >
-      <div className="bg-white text-gray-900 px-6 py-3 rounded-full shadow-lg border-2 border-blue-500 font-semibold text-base opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div className="bg-white text-gray-900 px-6 py-3 rounded-full shadow-lg border-2 border-blue-500 font-semibold text-base transition-all duration-300 hover:shadow-xl">
         {buttonText[language]}
       </div>
       <div className="relative">
