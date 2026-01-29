@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { MessageCircle, Mail, Send, Instagram } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-import ContactBar from '../../layout/ContactBar';
 
 type FormData = {
   name: string;
@@ -65,7 +64,7 @@ export default function ContactPageAr() {
 
   return (
     <div dir="rtl" className="min-h-screen bg-background pb-20">
-      <Header lang="ar" />
+      <Header />
 
       <main className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <motion.div
@@ -251,8 +250,7 @@ export default function ContactPageAr() {
         </div>
       </main>
 
-      <Footer lang="ar" />
-      <ContactBar lang="ar" />
+      <Footer />
     </div>
   );
 }

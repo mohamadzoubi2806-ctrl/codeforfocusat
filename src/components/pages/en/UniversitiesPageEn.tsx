@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { GraduationCap, CheckCircle } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-import ContactBar from '../../layout/ContactBar';
 
 export default function UniversitiesPageEn() {
   const universities = [
@@ -18,7 +17,7 @@ export default function UniversitiesPageEn() {
 
   return (
     <div className="min-h-screen bg-background pb-20">
-      <Header lang="en" />
+      <Header />
 
       <main className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <motion.div
@@ -87,8 +86,7 @@ export default function UniversitiesPageEn() {
         </motion.div>
       </main>
 
-      <Footer lang="en" />
-      <ContactBar lang="en" />
+      <Footer />
     </div>
   );
 }

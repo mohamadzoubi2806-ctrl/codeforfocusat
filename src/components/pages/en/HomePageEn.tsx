@@ -2,12 +2,11 @@ import { motion } from 'framer-motion';
 import { MessageCircle, BookOpen, Clock, Zap } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-import ContactBar from '../../layout/ContactBar';
 
 export default function HomePageEn() {
   return (
     <div className="min-h-screen bg-background pb-20">
-      <Header lang="en" />
+      <Header />
 
       <section className="min-h-screen flex items-center justify-center px-4 py-16">
         <div className="max-w-[100rem] mx-auto w-full">
@@ -110,8 +109,7 @@ export default function HomePageEn() {
         </div>
       </section>
 
-      <Footer lang="en" />
-      <ContactBar lang="en" />
+      <Footer />
     </div>
   );
 }

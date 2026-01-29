@@ -2,12 +2,11 @@ import { motion } from 'framer-motion';
 import { Clock, BookOpen, Target, Users, Calendar, CheckCircle } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-import ContactBar from '../../layout/ContactBar';
 
 export default function CoursePlanPageHe() {
   return (
     <div className="min-h-screen bg-background pb-20" dir="rtl">
-      <Header lang="he" />
+      <Header />
 
       <main className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <motion.div
@@ -209,8 +208,7 @@ export default function CoursePlanPageHe() {
         </motion.div>
       </main>
 
-      <Footer lang="he" />
-      <ContactBar lang="he" />
+      <Footer />
     </div>
   );
 }

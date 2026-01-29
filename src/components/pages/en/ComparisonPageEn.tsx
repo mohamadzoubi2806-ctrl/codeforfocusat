@@ -2,12 +2,11 @@ import { motion } from 'framer-motion';
 import { Clock, Zap, Globe, Calculator, RefreshCw, DollarSign, Calendar, Languages, BarChart } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-import ContactBar from '../../layout/ContactBar';
 
 export default function ComparisonPageEn() {
   return (
     <div dir="ltr" className="min-h-screen bg-background pb-20">
-      <Header lang="en" />
+      <Header />
 
       <main className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <motion.div
@@ -263,8 +262,7 @@ export default function ComparisonPageEn() {
         </div>
       </main>
 
-      <Footer lang="en" />
-      <ContactBar lang="en" />
+      <Footer />
     </div>
   );
 }

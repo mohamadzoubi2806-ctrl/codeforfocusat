@@ -3,10 +3,6 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 
-import Header from './layout/Header';
-import Footer from './layout/Footer';
-import HomePage from './pages/HomePage';
-
 import HomePageEn from './pages/en/HomePageEn';
 import WhatIsSatPageEn from './pages/en/WhatIsSatPageEn';
 import ComparisonPageEn from './pages/en/ComparisonPageEn';
@@ -43,15 +39,18 @@ function ScrollToTop() {
 
 function Layout() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
       <ScrollToTop />
-      <Header />
-      <main className="flex-grow">
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
+      <Outlet />
+    </>
   );
+}
+
+function HomePage() {
+  const { language } = useLanguage();
+  if (language === 'ar') return <HomePageAr />;
+  if (language === 'he') return <HomePageHe />;
+  return <HomePageEn />;
 }
 
 function WhatIsSatPage() {

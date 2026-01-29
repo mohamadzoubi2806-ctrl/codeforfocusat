@@ -139,7 +139,7 @@ export default function AiPageEn() {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
-      <Header lang="en" />
+      <Header />
 
       <main className="max-w-4xl mx-auto px-4 py-12 relative">
         <AnimatePresence>
@@ -215,7 +215,7 @@ export default function AiPageEn() {
           </AnimatePresence>
         </div>
       </main>
-      <Footer lang="en" />
+      <Footer />
     </div>
   );
 }

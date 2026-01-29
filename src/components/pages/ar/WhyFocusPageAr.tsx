@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { Target, Brain, Users, TrendingUp } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-import ContactBar from '../../layout/ContactBar';
 
 export default function WhyFocusPageAr() {
   const advantages = [
@@ -30,7 +29,7 @@ export default function WhyFocusPageAr() {
 
   return (
     <div dir="rtl" className="min-h-screen bg-background pb-20">
-      <Header lang="ar" />
+      <Header />
 
       <main className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <motion.div
@@ -84,8 +83,7 @@ export default function WhyFocusPageAr() {
         </motion.div>
       </main>
 
-      <Footer lang="ar" />
-      <ContactBar lang="ar" />
+      <Footer />
     </div>
   );
 }

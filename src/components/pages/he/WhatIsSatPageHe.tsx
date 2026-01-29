@@ -2,12 +2,11 @@ import { motion } from 'framer-motion';
 import { BookOpen, Clock, Target, Award } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-import ContactBar from '../../layout/ContactBar';
 
 export default function WhatIsSatPageHe() {
   return (
     <div dir="rtl" className="min-h-screen bg-background pb-20">
-      <Header lang="he" />
+      <Header />
 
       <main className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <motion.div
@@ -110,8 +109,7 @@ export default function WhatIsSatPageHe() {
         </div>
       </main>
 
-      <Footer lang="he" />
-      <ContactBar lang="he" />
+      <Footer />
     </div>
   );
 }

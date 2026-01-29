@@ -368,7 +368,7 @@ export default function AiPageHe() {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20" dir="rtl">
-      <Header lang="he" />
+      <Header />
 
       <main className="max-w-4xl mx-auto px-4 py-12 relative">
         
@@ -468,7 +468,7 @@ export default function AiPageHe() {
           </AnimatePresence>
         </div>
       </main>
-      <Footer lang="he" />
+      <Footer />
     </div>
   );
 }

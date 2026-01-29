@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { GraduationCap, Calculator, ExternalLink, X } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-import ContactBar from '../../layout/ContactBar';
 
 // 1. Define the shape of our data locally (No external file needed)
 type University = {
@@ -90,7 +89,7 @@ export default function UniversitiesPageAr() {
 
   return (
     <div className="min-h-screen bg-background pb-20" dir="rtl">
-      <Header lang="ar" />
+      <Header />
       
       <main className="w-full">
         {/* Hero Section */}
@@ -287,8 +286,7 @@ export default function UniversitiesPageAr() {
         )}
       </main>
 
-      <Footer lang="ar" />
-      <ContactBar lang="ar" />
+      <Footer />
     </div>
   );
 }

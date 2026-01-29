@@ -486,7 +486,7 @@ export default function AiPageAr() {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20" dir="rtl">
-      <Header lang="ar" />
+      <Header />
 
       <main className="max-w-4xl mx-auto px-4 py-12 relative">
         <AnimatePresence>
@@ -582,7 +582,7 @@ export default function AiPageAr() {
           </AnimatePresence>
         </div>
       </main>
-      <Footer lang="ar" />
+      <Footer />
     </div>
   );
 }
