@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Globe } from 'lucide-react';
+import { Globe } from 'lucide-react';
 import { useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 
@@ -40,7 +40,6 @@ const languageLabels = {
 };
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const location = useLocation();
   const { language, setLanguage, isRTL } = useLanguage();
@@ -50,35 +49,35 @@ export default function Header() {
   return (
     <header className="bg-white shadow-md sticky top-0 z-[60]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-4 gap-4">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <Link to="/" className="flex items-center gap-2 group shrink-0">
             <div className="relative">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg group-hover:shadow-xl transition-all duration-300 flex items-center justify-center overflow-hidden">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg group-hover:shadow-xl transition-all duration-300 flex items-center justify-center overflow-hidden">
                 <img
                   src="/whatsapp_image_2025-12-31_at_02.26.34.jpeg"
                   alt="Focus SAT"
-                  className="w-12 h-12 object-cover rounded-full"
+                  className="w-10 h-10 object-cover rounded-full"
                 />
               </div>
-              <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-orange-600 rounded-full border-2 border-white"></div>
+              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-orange-600 rounded-full border-2 border-white"></div>
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-gray-900 leading-tight">Focus SAT</h1>
+              <h1 className="text-lg font-bold text-gray-900 leading-tight">Focus SAT</h1>
               <p className="text-xs text-gray-600">Excellence in Education</p>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className={`hidden lg:flex gap-8 items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
+          {/* Navigation - Always Visible */}
+          <nav className={`flex gap-2 sm:gap-4 lg:gap-6 items-center flex-wrap justify-end flex-1 ${isRTL ? 'flex-row-reverse' : ''}`}>
             {links.map((link) => {
               const isActive = location.pathname === link.path;
               return (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`transition-all duration-200 text-base font-semibold px-3 py-2 rounded-lg ${
+                  className={`transition-all duration-200 text-xs sm:text-sm lg:text-base font-semibold px-2 py-1.5 lg:px-3 lg:py-2 rounded-lg whitespace-nowrap ${
                     isActive
                       ? 'text-orange-600 bg-orange-50'
                       : 'text-gray-800 hover:text-orange-600 hover:bg-orange-50'
@@ -89,15 +88,15 @@ export default function Header() {
               );
             })}
 
-            {/* Language Switcher - Desktop */}
+            {/* Language Switcher */}
             <div className="relative">
               <button
                 onClick={() => setLangMenuOpen(!langMenuOpen)}
-                className="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors"
+                className="flex items-center gap-1.5 px-2 py-1.5 lg:px-3 lg:py-2 rounded-lg text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors"
                 aria-label="Switch language"
               >
-                <Globe size={18} />
-                <span className="text-sm font-medium">{languageLabels[language]}</span>
+                <Globe size={16} className="lg:w-[18px] lg:h-[18px]" />
+                <span className="text-xs sm:text-sm font-medium">{languageLabels[language]}</span>
               </button>
 
               {langMenuOpen && (
@@ -122,62 +121,7 @@ export default function Header() {
               )}
             </div>
           </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden text-gray-700 hover:text-orange-600"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
-
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <nav className={`lg:hidden pb-4 border-t border-gray-100 pt-4 flex flex-col gap-2 ${isRTL ? 'items-end' : 'items-start'}`}>
-            {links.map((link) => {
-              const isActive = location.pathname === link.path;
-              return (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`transition-all duration-200 text-base font-semibold px-4 py-3 rounded-lg w-full ${
-                    isActive
-                      ? 'text-orange-600 bg-orange-50'
-                      : 'text-gray-800 hover:text-orange-600 hover:bg-orange-50'
-                  } ${isRTL ? 'text-right' : 'text-left'}`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-
-            {/* Language Switcher - Mobile */}
-            <div className="border-t border-gray-100 pt-3 mt-2 w-full">
-              <div className="flex gap-3 items-center">
-                <Globe size={18} className="text-gray-600" />
-                {(Object.keys(languageLabels) as Array<keyof typeof languageLabels>).map((lang) => (
-                  <button
-                    key={lang}
-                    onClick={() => {
-                      setLanguage(lang);
-                      setMobileMenuOpen(false);
-                    }}
-                    className={`px-3 py-1 rounded-md text-sm transition-colors ${
-                      language === lang
-                        ? 'bg-orange-600 text-white font-medium'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                  >
-                    {languageLabels[lang]}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </nav>
-        )}
       </div>
     </header>
   );
