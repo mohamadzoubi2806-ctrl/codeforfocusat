@@ -9,10 +9,10 @@ export default function HeroTitle() {
       transition={{ duration: 0.5, delay: 0.2 }}
       className={styles.heroTitleContainer}
     >
-      <h1 className={styles.mainTitle}>
-        <span className={styles.arabicText}>مركز </span>
-        <span className={styles.focusText}>Focus</span>
-        <span className={styles.arabicText}> للتعليم</span>
+      <h1 className={`${styles.mainTitle} bg-gradient-to-r from-[#9E5A4E] to-[#625591] bg-clip-text text-transparent`}>
+        <span>مركز </span>
+        <span className="font-bold">Focus</span>
+        <span> للتعليم</span>
       </h1>
       <p className={styles.subtitle}>
         التحضير المهني لامتحان Digital SAT
