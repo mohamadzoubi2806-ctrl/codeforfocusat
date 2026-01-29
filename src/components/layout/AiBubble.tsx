@@ -1,4 +1,4 @@
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Eye, EyeOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useState, useRef, useEffect } from 'react';
@@ -9,6 +9,7 @@ export default function AiBubble() {
   const [position, setPosition] = useState({ x: window.innerWidth - 280, y: window.innerHeight - 120 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [isTransparent, setIsTransparent] = useState(false);
   const holdTimerRef = useRef<number | null>(null);
   const dragRef = useRef({ hasMoved: false, isDragEnabled: false });
 
@@ -80,14 +81,31 @@ export default function AiBubble() {
     }
   };
 
+  const handleTransparencyToggle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setIsTransparent(!isTransparent);
+  };
+
   return (
     <div
-      className="fixed z-50 flex items-center gap-3 group cursor-pointer"
-      style={{ left: `${position.x}px`, top: `${position.y}px` }}
+      className="fixed z-50 flex items-center gap-3 group cursor-pointer transition-opacity duration-300"
+      style={{
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+        opacity: isTransparent ? 0.3 : 1
+      }}
       onMouseDown={handleMouseDown}
       onClick={handleClick}
       aria-label="AI Tutor"
     >
+      <button
+        onClick={handleTransparencyToggle}
+        className="bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300 opacity-0 group-hover:opacity-100"
+        aria-label="Toggle transparency"
+      >
+        {isTransparent ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+      </button>
       <div className="bg-white text-gray-900 px-6 py-3 rounded-full shadow-lg border-2 border-blue-500 font-semibold text-base transition-all duration-300 hover:shadow-xl">
         {buttonText[language]}
       </div>
