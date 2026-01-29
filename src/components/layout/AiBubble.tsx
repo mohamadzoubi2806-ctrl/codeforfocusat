@@ -9,7 +9,8 @@ export default function AiBubble() {
   const [position, setPosition] = useState({ x: window.innerWidth - 280, y: window.innerHeight - 120 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
-  const dragRef = useRef({ hasMoved: false });
+  const holdTimerRef = useRef<number | null>(null);
+  const dragRef = useRef({ hasMoved: false, isDragEnabled: false });
 
   const buttonText = {
     en: 'Ask Our AI',
@@ -19,7 +20,7 @@ export default function AiBubble() {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (isDragging) {
+      if (isDragging && dragRef.current.isDragEnabled) {
         dragRef.current.hasMoved = true;
         const newX = e.clientX - dragStart.x;
         const newY = e.clientY - dragStart.y;
@@ -35,7 +36,12 @@ export default function AiBubble() {
     };
 
     const handleMouseUp = () => {
+      if (holdTimerRef.current) {
+        clearTimeout(holdTimerRef.current);
+        holdTimerRef.current = null;
+      }
       setIsDragging(false);
+      dragRef.current.isDragEnabled = false;
     };
 
     if (isDragging) {
@@ -52,11 +58,16 @@ export default function AiBubble() {
   const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
     dragRef.current.hasMoved = false;
+    dragRef.current.isDragEnabled = false;
     setIsDragging(true);
     setDragStart({
       x: e.clientX - position.x,
       y: e.clientY - position.y
     });
+
+    holdTimerRef.current = window.setTimeout(() => {
+      dragRef.current.isDragEnabled = true;
+    }, 200);
   };
 
   const handleClick = (e: React.MouseEvent) => {
@@ -70,7 +81,7 @@ export default function AiBubble() {
 
   return (
     <div
-      className="fixed z-50 flex items-center gap-3 group cursor-move"
+      className="fixed z-50 flex items-center gap-3 group cursor-pointer"
       style={{ left: `${position.x}px`, top: `${position.y}px` }}
       onMouseDown={handleMouseDown}
       onClick={handleClick}
