@@ -65,7 +65,6 @@ export default function Header() {
             </div>
             <div className="hidden sm:block">
               <h1 className="text-lg font-bold text-gray-900 leading-tight">Focus SAT</h1>
-              <p className="text-xs text-gray-600">Excellence in Education</p>
             </div>
           </Link>
 
@@ -92,15 +91,15 @@ export default function Header() {
             <div className="relative">
               <button
                 onClick={() => setLangMenuOpen(!langMenuOpen)}
-                className="flex items-center gap-1.5 px-2 py-1.5 lg:px-3 lg:py-2 rounded-lg text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors"
+                className="flex items-center gap-2 px-3 py-2 lg:px-4 lg:py-2.5 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-md hover:shadow-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105"
                 aria-label="Switch language"
               >
-                <Globe size={16} className="lg:w-[18px] lg:h-[18px]" />
-                <span className="text-xs sm:text-sm font-medium">{languageLabels[language]}</span>
+                <Globe size={18} className="lg:w-5 lg:h-5" />
+                <span className="text-sm sm:text-base font-semibold">{languageLabels[language]}</span>
               </button>
 
               {langMenuOpen && (
-                <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-[70]">
+                <div className="absolute right-0 mt-3 w-44 bg-white rounded-xl shadow-2xl border border-gray-200 py-2 z-[70] overflow-hidden animate-fadeIn">
                   {(Object.keys(languageLabels) as Array<keyof typeof languageLabels>).map((lang) => (
                     <button
                       key={lang}
@@ -108,13 +107,16 @@ export default function Header() {
                         setLanguage(lang);
                         setLangMenuOpen(false);
                       }}
-                      className={`w-full text-left px-4 py-2 text-sm transition-colors ${
+                      className={`w-full text-left px-5 py-3 text-sm font-medium transition-all duration-200 ${
                         language === lang
-                          ? 'bg-orange-50 text-orange-600 font-medium'
-                          : 'text-gray-700 hover:bg-gray-50'
+                          ? 'bg-gradient-to-r from-orange-50 to-orange-100 text-orange-600 border-l-4 border-orange-500'
+                          : 'text-gray-700 hover:bg-gray-50 hover:text-orange-600 hover:pl-6'
                       }`}
                     >
-                      {languageLabels[lang]}
+                      <span className="flex items-center gap-2">
+                        <Globe size={16} />
+                        {languageLabels[lang]}
+                      </span>
                     </button>
                   ))}
                 </div>
