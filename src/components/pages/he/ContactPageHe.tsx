@@ -42,7 +42,7 @@ export default function ContactPageHe() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl md:text-6xl font-heading text-foreground mb-6">צור קשר</h1>
+          <h1 className="text-5xl md:text-6xl font-heading mb-6 bg-gradient-to-r from-[#9E5A4E] to-[#625591] bg-clip-text text-transparent">צור קשר</h1>
           <p className="text-xl text-secondary max-w-4xl mx-auto font-paragraph">
             אנחנו כאן כדי לענות על כל השאלות שלך
           </p>

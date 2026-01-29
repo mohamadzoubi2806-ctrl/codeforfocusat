@@ -16,7 +16,7 @@ export default function HomePageHe() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-center mb-16"
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading text-gray-900 mb-6 bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading text-gray-900 mb-6 bg-gradient-to-r from-[#9E5A4E] to-[#625591] bg-clip-text text-transparent">
               מרכז Focus להוראה
             </h1>
             <p className="text-2xl md:text-3xl font-paragraph text-gray-700 mb-8">

@@ -157,7 +157,7 @@ export default function AiPageEn() {
           <div className="inline-flex items-center justify-center p-4 bg-white rounded-full shadow-sm mb-4">
             <Sparkles className="text-primary w-8 h-8" />
           </div>
-          <h1 className="text-3xl md:text-4xl font-heading text-foreground mb-2">Focus AI Tutor</h1>
+          <h1 className="text-3xl md:text-4xl font-heading mb-2 bg-gradient-to-r from-[#9E5A4E] to-[#625591] bg-clip-text text-transparent">Focus AI Tutor</h1>
           <p className="text-secondary font-paragraph">Ask me about Math, English, or request a study schedule</p>
         </motion.div>
 

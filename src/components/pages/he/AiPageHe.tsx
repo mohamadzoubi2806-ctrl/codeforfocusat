@@ -157,7 +157,7 @@
 //           <div className="inline-flex items-center justify-center p-4 bg-white rounded-full shadow-sm mb-4">
 //             <Sparkles className="text-primary w-8 h-8" />
 //           </div>
-//           <h1 className="text-3xl md:text-4xl font-heading text-foreground mb-2">העוזר החכם של Focus</h1>
+//           <h1 className="text-3xl md:text-4xl font-heading mb-2 bg-gradient-to-r from-[#9E5A4E] to-[#625591] bg-clip-text text-transparent">העוזר החכם של Focus</h1>
 //           <p className="text-secondary font-paragraph">שאל אותי על מתמטיקה, אנגלית, או בקש תוכנית לימודים</p>
 //         </motion.div>
 
@@ -388,7 +388,7 @@ export default function AiPageHe() {
           <div className="inline-flex items-center justify-center p-4 bg-white rounded-full shadow-sm mb-4">
             <Sparkles className="text-primary w-8 h-8" />
           </div>
-          <h1 className="text-3xl md:text-4xl font-heading text-foreground mb-2">העוזר החכם של Focus</h1>
+          <h1 className="text-3xl md:text-4xl font-heading mb-2 bg-gradient-to-r from-[#9E5A4E] to-[#625591] bg-clip-text text-transparent">העוזר החכם של Focus</h1>
           <p className="text-secondary font-paragraph">שאל אותי על מתמטיקה, אנגלית, או בקש תוכנית לימודים</p>
         </motion.div>
 
