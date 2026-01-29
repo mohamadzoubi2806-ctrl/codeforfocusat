@@ -27,6 +27,10 @@ import WhyFocusPageHe from './pages/he/WhyFocusPageHe';
 import ContactPageHe from './pages/he/ContactPageHe';
 import UniversitiesPageHe from './pages/he/UniversitiesPageHe';
 
+import AiPageEn from './pages/en/AiPageEn';
+import AiPageAr from './pages/ar/AiPageAr';
+import AiPageHe from './pages/he/AiPageHe';
+
 function ScrollToTop() {
   const { pathname } = useLocation();
 
@@ -95,6 +99,13 @@ function UniversitiesPage() {
   return <UniversitiesPageEn />;
 }
 
+function AiPage() {
+  const { language } = useLanguage();
+  if (language === 'ar') return <AiPageAr />;
+  if (language === 'he') return <AiPageHe />;
+  return <AiPageEn />;
+}
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -110,6 +121,7 @@ const router = createBrowserRouter([
       { path: "why-focus", element: <WhyFocusPage /> },
       { path: "contact", element: <ContactPage /> },
       { path: "universities", element: <UniversitiesPage /> },
+      { path: "ai-tutor", element: <AiPage /> },
     ],
   },
 ]);

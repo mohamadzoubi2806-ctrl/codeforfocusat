@@ -6,19 +6,13 @@ export default function AiBubble() {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  const isLanguageSelectionPage = currentPath === '/';
   const isAiPage = currentPath.includes('/ai-tutor');
 
-  if (isLanguageSelectionPage || isAiPage) {
+  if (isAiPage) {
     return null;
   }
 
-  const getAiRoute = () => {
-    if (currentPath.startsWith('/en')) return '/en/ai-tutor';
-    if (currentPath.startsWith('/ar')) return '/ar/ai-tutor';
-    if (currentPath.startsWith('/he')) return '/he/ai-tutor';
-    return '/en/ai-tutor';
-  };
+  const aiRoute = '/ai-tutor';
 
   return (
     <motion.div
@@ -39,7 +33,7 @@ export default function AiBubble() {
       </motion.div>
 
       <Link
-        to={getAiRoute()}
+        to={aiRoute}
         className="flex items-center justify-center w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 group"
       >
         <Sparkles className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
