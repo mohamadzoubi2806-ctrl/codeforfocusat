@@ -29,10 +29,12 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 ${isRTL ? 'text-right' : 'text-left'}`}>
+        {/* التغيير تم هنا: جعلناها flex-col لترتيب العناصر تحت بعضها */}
+        <div className={`flex flex-col gap-6 mb-8 ${isRTL ? 'items-end text-right' : 'items-start text-left'}`}>
 
+          {/* WhatsApp Block */}
           <div>
-            <h3 className={`text-lg font-semibold mb-4 flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+            <h3 className={`text-lg font-semibold mb-2 flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
               <MessageCircle size={20} className="text-orange-400" />
               {content.whatsapp}
             </h3>
@@ -40,15 +42,16 @@ export default function Footer() {
               href="https://wa.me/972523825927"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-300 hover:text-orange-400 transition-colors block"
+              className="text-gray-300 hover:text-orange-400 transition-colors block text-lg"
               dir="ltr"
             >
               +972 52-382-5927
             </a>
           </div>
 
+          {/* Instagram Block */}
           <div>
-            <h3 className={`text-lg font-semibold mb-4 flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+            <h3 className={`text-lg font-semibold mb-2 flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
               <Instagram size={20} className="text-orange-400" />
               {content.instagram}
             </h3>
@@ -56,21 +59,22 @@ export default function Footer() {
               href="https://www.instagram.com/focus_satcenter/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-300 hover:text-orange-400 transition-colors block"
+              className="text-gray-300 hover:text-orange-400 transition-colors block text-lg"
               dir="ltr"
             >
               @focus_satcenter
             </a>
           </div>
 
+          {/* Email Block */}
           <div>
-            <h3 className={`text-lg font-semibold mb-4 flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+            <h3 className={`text-lg font-semibold mb-2 flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
               <Mail size={20} className="text-orange-400" />
               {content.email}
             </h3>
             <a
               href="mailto:focus.satcenter@gmail.com"
-              className="text-gray-300 hover:text-orange-400 transition-colors block"
+              className="text-gray-300 hover:text-orange-400 transition-colors block text-lg"
             >
               focus.satcenter@gmail.com
             </a>
