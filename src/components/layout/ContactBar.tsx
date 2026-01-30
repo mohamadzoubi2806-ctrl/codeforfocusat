@@ -21,44 +21,58 @@ export default function ContactBar({ lang = 'en' }: ContactBarProps) {
       className="fixed bottom-0 left-0 right-0 bg-primary text-primary-foreground shadow-lg z-40"
     >
       <div className="max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8">
-          
+        <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
+
           <a
             href="https://wa.me/972523825927"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
             aria-label={currentLabels.whatsapp}
           >
             <MessageCircle size={20} />
-            <span className="text-sm sm:text-base font-paragraph hidden sm:inline">
-              {currentLabels.whatsapp}
-            </span>
+            <div className="flex flex-col">
+              <span className="text-xs font-paragraph opacity-90">
+                {currentLabels.whatsapp}
+              </span>
+              <span className="text-sm sm:text-base font-paragraph font-medium" dir="ltr">
+                +972 52-382-5927
+              </span>
+            </div>
           </a>
 
           <a
             href="mailto:focus.satcenter@gmail.com"
-            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
             aria-label={currentLabels.email}
           >
             <Mail size={20} />
-            <span className="text-sm sm:text-base font-paragraph hidden sm:inline">
-              {currentLabels.email}
-            </span>
+            <div className="flex flex-col">
+              <span className="text-xs font-paragraph opacity-90">
+                {currentLabels.email}
+              </span>
+              <span className="text-sm sm:text-base font-paragraph font-medium">
+                focus.satcenter@gmail.com
+              </span>
+            </div>
           </a>
 
-          {/* UPDATED INSTAGRAM LINK */}
           <a
             href="https://www.instagram.com/focus_satcenter/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
             aria-label={currentLabels.instagram}
           >
             <Instagram size={20} />
-            <span className="text-sm sm:text-base font-paragraph hidden sm:inline">
-              {currentLabels.instagram}
-            </span>
+            <div className="flex flex-col">
+              <span className="text-xs font-paragraph opacity-90">
+                {currentLabels.instagram}
+              </span>
+              <span className="text-sm sm:text-base font-paragraph font-medium">
+                @focus_satcenter
+              </span>
+            </div>
           </a>
         </div>
       </div>
