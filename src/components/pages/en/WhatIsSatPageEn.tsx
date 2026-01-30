@@ -2,8 +2,10 @@ import { motion } from 'framer-motion';
 import { BookOpen, Clock, Target, Award } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import { usePageTitle } from '../../../hooks/usePageTitle';
 
 export default function WhatIsSatPageEn() {
+  usePageTitle('What is SAT - Focus Teaching Center');
   return (
     <div className="min-h-screen bg-background pb-20">
       <Header />

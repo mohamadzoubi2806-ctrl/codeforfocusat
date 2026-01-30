@@ -3,8 +3,10 @@ import { MessageCircle, BookOpen, Clock, Zap } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import HeroTitle from '../../layout/HeroTitle';
+import { usePageTitle } from '../../../hooks/usePageTitle';
 
 export default function HomePageAr() {
+  usePageTitle('Focus Teaching Center - SAT Exam Preparation');
   return (
     <div dir="rtl" className="min-h-screen bg-gradient-to-br from-blue-50 via-orange-50 to-blue-100 pb-20">
       <Header />

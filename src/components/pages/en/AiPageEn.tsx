@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Bot, User, Sparkles, AlertCircle, Mail, X } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import { usePageTitle } from '../../../hooks/usePageTitle';
 
 // ✅ YOUR API KEY & FORM ID
 const API_KEY = "AIzaSyDyETJgktJTtUHUWsXx8ZB8ni7Ju3I9ka4";
@@ -14,6 +15,7 @@ type Message = {
 };
 
 export default function AiPageEn() {
+  usePageTitle('AI Tutor - Focus Teaching Center');
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: 'Hello! I am the Focus AI Tutor. I can help you with study schedules, math problems, or registration details.' }
   ]);

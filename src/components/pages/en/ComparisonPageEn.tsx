@@ -2,8 +2,10 @@ import { motion } from 'framer-motion';
 import { Clock, Zap, Globe, Calculator, RefreshCw, DollarSign, Calendar, Languages, BarChart } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import { usePageTitle } from '../../../hooks/usePageTitle';
 
 export default function ComparisonPageEn() {
+  usePageTitle('SAT vs Psychometric - Focus Teaching Center');
   return (
     <div dir="ltr" className="min-h-screen bg-background pb-20">
       <Header />

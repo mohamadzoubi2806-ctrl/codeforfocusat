@@ -3,8 +3,10 @@ import { BookOpen, Clock, Target, Award } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import PageTitle from '../../layout/PageTitle';
+import { usePageTitle } from '../../../hooks/usePageTitle';
 
 export default function WhatIsSatPageAr() {
+  usePageTitle('What is SAT - Focus Teaching Center');
   return (
     <div dir="rtl" className="min-h-screen bg-background pb-20">
       <Header />

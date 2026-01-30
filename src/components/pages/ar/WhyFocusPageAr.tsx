@@ -3,8 +3,10 @@ import { Target, Brain, Users, TrendingUp } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import PageTitle from '../../layout/PageTitle';
+import { usePageTitle } from '../../../hooks/usePageTitle';
 
 export default function WhyFocusPageAr() {
+  usePageTitle('Why Focus - Focus Teaching Center');
   const advantages = [
     {
       icon: Target,

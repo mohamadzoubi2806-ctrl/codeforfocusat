@@ -4,6 +4,7 @@ import { GraduationCap, Calculator, ExternalLink, X } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import PageTitle from '../../layout/PageTitle';
+import { usePageTitle } from '../../../hooks/usePageTitle';
 
 // 1. Define the shape of our data locally (No external file needed)
 type University = {
@@ -14,6 +15,7 @@ type University = {
 };
 
 export default function UniversitiesPageAr() {
+  usePageTitle('Universities - Focus Teaching Center');
   // 2. We use the Static List here instead of fetching from a database
   const universitiesData: University[] = [
     { 

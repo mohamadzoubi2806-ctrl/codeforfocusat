@@ -3,8 +3,10 @@ import { Clock, Zap, Globe, Calculator, RefreshCw, DollarSign, Calendar, Languag
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import PageTitle from '../../layout/PageTitle';
+import { usePageTitle } from '../../../hooks/usePageTitle';
 
 export default function ComparisonPageAr() {
+  usePageTitle('SAT vs Psychometric - Focus Teaching Center');
   return (
     <div dir="rtl" className="min-h-screen bg-background pb-20">
       <Header />

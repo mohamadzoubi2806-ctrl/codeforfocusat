@@ -2,8 +2,10 @@ import { motion } from 'framer-motion';
 import { Clock, BookOpen, Target, Users, Calendar, CheckCircle } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import { usePageTitle } from '../../../hooks/usePageTitle';
 
 export default function CoursePlanPageEn() {
+  usePageTitle('Course Plan - Focus Teaching Center');
   return (
     <div className="min-h-screen bg-background pb-20">
       <Header />

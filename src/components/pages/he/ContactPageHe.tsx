@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { MessageCircle, Mail, Send, Instagram } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import { usePageTitle } from '../../../hooks/usePageTitle';
 
 type FormData = {
   name: string;
@@ -12,6 +13,7 @@ type FormData = {
 };
 
 export default function ContactPageHe() {
+  usePageTitle('Contact Us - Focus Teaching Center');
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',

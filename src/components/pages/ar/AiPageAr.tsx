@@ -350,6 +350,7 @@ import { Send, Bot, User, Sparkles, AlertCircle, Mail, X } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import PageTitle from '../../layout/PageTitle';
+import { usePageTitle } from '../../../hooks/usePageTitle';
 
 // ✅ YOUR API KEY & FORM ID
 const API_KEY = "AIzaSyDyETJgktJTtUHUWsXx8ZB8ni7Ju3I9ka4";
@@ -361,6 +362,7 @@ type Message = {
 };
 
 export default function AiPageAr() {
+  usePageTitle('AI Tutor - Focus Teaching Center');
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: 'مرحباً! أنا مساعد Focus الذكي. يمكنني مساعدتك في وضع جدول دراسي، شرح مسائل رياضية، أو الإجابة عن تفاصيل التسجيل.' }
   ]);

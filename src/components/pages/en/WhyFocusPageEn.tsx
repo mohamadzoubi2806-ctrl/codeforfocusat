@@ -2,8 +2,10 @@ import { motion } from 'framer-motion';
 import { Target, Brain, Users, TrendingUp } from 'lucide-react';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
+import { usePageTitle } from '../../../hooks/usePageTitle';
 
 export default function WhyFocusPageEn() {
+  usePageTitle('Why Focus - Focus Teaching Center');
   const advantages = [
     {
       icon: Target,
