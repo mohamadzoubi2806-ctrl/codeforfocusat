@@ -37,7 +37,25 @@ export default function AiBubble() {
       }
     };
 
-    const handleMouseUp = () => {
+    const handleTouchMove = (e: TouchEvent) => {
+      if (isDragging && dragRef.current.isDragEnabled) {
+        dragRef.current.hasMoved = true;
+        const touch = e.touches[0];
+        const newX = touch.clientX - dragStart.x;
+        const newY = touch.clientY - dragStart.y;
+
+        const minY = 80;
+        const maxX = window.innerWidth - 280;
+        const maxY = window.innerHeight - 80;
+
+        setPosition({
+          x: Math.max(0, Math.min(newX, maxX)),
+          y: Math.max(minY, Math.min(newY, maxY))
+        });
+      }
+    };
+
+    const handleEnd = () => {
       if (holdTimerRef.current) {
         clearTimeout(holdTimerRef.current);
         holdTimerRef.current = null;
@@ -48,12 +66,16 @@ export default function AiBubble() {
 
     if (isDragging) {
       document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener('mouseup', handleEnd);
+      document.addEventListener('touchmove', handleTouchMove);
+      document.addEventListener('touchend', handleEnd);
     }
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('mouseup', handleEnd);
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('touchend', handleEnd);
     };
   }, [isDragging, dragStart]);
 
@@ -72,6 +94,22 @@ export default function AiBubble() {
     }, 200);
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    e.preventDefault();
+    dragRef.current.hasMoved = false;
+    dragRef.current.isDragEnabled = false;
+    setIsDragging(true);
+    const touch = e.touches[0];
+    setDragStart({
+      x: touch.clientX - position.x,
+      y: touch.clientY - position.y
+    });
+
+    holdTimerRef.current = window.setTimeout(() => {
+      dragRef.current.isDragEnabled = true;
+    }, 200);
+  };
+
   const handleClick = (e: React.MouseEvent) => {
     if (dragRef.current.hasMoved) {
       e.preventDefault();
@@ -81,7 +119,7 @@ export default function AiBubble() {
     }
   };
 
-  const handleTransparencyToggle = (e: React.MouseEvent) => {
+  const handleTransparencyToggle = (e: React.MouseEvent | React.TouchEvent) => {
     e.stopPropagation();
     e.preventDefault();
     setIsTransparent(!isTransparent);
@@ -96,11 +134,13 @@ export default function AiBubble() {
         opacity: isTransparent ? 0.3 : 1
       }}
       onMouseDown={handleMouseDown}
+      onTouchStart={handleTouchStart}
       onClick={handleClick}
       aria-label="AI Tutor"
     >
       <button
         onClick={handleTransparencyToggle}
+        onTouchStart={handleTransparencyToggle}
         className="bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300 opacity-0 group-hover:opacity-100"
         aria-label="Toggle transparency"
       >
