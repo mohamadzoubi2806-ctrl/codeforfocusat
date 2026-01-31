@@ -54,11 +54,11 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className={`flex items-center gap-2 group shrink-0 ${isRTL ? 'flex-row-reverse' : ''}`}>
             <div className="relative">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg group-hover:shadow-xl transition-all duration-300 flex items-center justify-center overflow-hidden">
+              <div className="w-12 h-12 rounded-full bg-white shadow-lg group-hover:shadow-xl transition-all duration-300 flex items-center justify-center overflow-hidden p-1">
                 <img
-                  src="/logo.svg"
-                  alt="Focus SAT"
-                  className="w-full h-full object-cover rounded-full"
+                  src="/whatsapp_image_2025-12-31_at_02.26.34.jpeg"
+                  alt="Focus Teaching Center"
+                  className="w-full h-full object-contain"
                 />
               </div>
               <div className={`absolute -bottom-1 w-4 h-4 bg-orange-600 rounded-full border-2 border-white ${isRTL ? '-left-1' : '-right-1'}`}></div>
