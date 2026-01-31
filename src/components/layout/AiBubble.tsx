@@ -39,6 +39,7 @@ export default function AiBubble() {
 
     const handleTouchMove = (e: TouchEvent) => {
       if (isDragging && dragRef.current.isDragEnabled) {
+        e.preventDefault();
         dragRef.current.hasMoved = true;
         const touch = e.touches[0];
         const newX = touch.clientX - dragStart.x;
@@ -67,7 +68,7 @@ export default function AiBubble() {
     if (isDragging) {
       document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('mouseup', handleEnd);
-      document.addEventListener('touchmove', handleTouchMove);
+      document.addEventListener('touchmove', handleTouchMove, { passive: false });
       document.addEventListener('touchend', handleEnd);
     }
 
@@ -131,7 +132,8 @@ export default function AiBubble() {
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
-        opacity: isTransparent ? 0.3 : 1
+        opacity: isTransparent ? 0.3 : 1,
+        touchAction: 'none'
       }}
       onMouseDown={handleMouseDown}
       onTouchStart={handleTouchStart}
