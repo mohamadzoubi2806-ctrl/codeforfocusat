@@ -6,7 +6,13 @@ import { useState, useRef, useEffect } from 'react';
 export default function AiBubble() {
   const { language } = useLanguage();
   const navigate = useNavigate();
-  const [position, setPosition] = useState({ x: window.innerWidth - 280, y: window.innerHeight - 120 });
+  const isMobile = window.innerWidth < 768;
+  const bubbleWidth = isMobile ? 150 : 280;
+  const bubbleHeight = isMobile ? 60 : 120;
+  const [position, setPosition] = useState({
+    x: window.innerWidth - bubbleWidth - 20,
+    y: window.innerHeight - bubbleHeight - 20
+  });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [isTransparent, setIsTransparent] = useState(false);
@@ -14,6 +20,12 @@ export default function AiBubble() {
   const dragRef = useRef({ hasMoved: false, isDragEnabled: false });
 
   const buttonText = {
+    en: 'Ask AI',
+    ar: 'اسأل AI',
+    he: 'שאל AI'
+  };
+
+  const buttonTextFull = {
     en: 'Ask Our AI',
     ar: 'اسأل الذكاء الاصطناعي',
     he: 'שאל את ה-AI'
@@ -26,9 +38,12 @@ export default function AiBubble() {
         const newX = e.clientX - dragStart.x;
         const newY = e.clientY - dragStart.y;
 
+        const isMobileNow = window.innerWidth < 768;
+        const bubbleW = isMobileNow ? 150 : 280;
+        const bubbleH = isMobileNow ? 60 : 120;
         const minY = 80;
-        const maxX = window.innerWidth - 280;
-        const maxY = window.innerHeight - 80;
+        const maxX = window.innerWidth - bubbleW;
+        const maxY = window.innerHeight - bubbleH;
 
         setPosition({
           x: Math.max(0, Math.min(newX, maxX)),
@@ -45,9 +60,12 @@ export default function AiBubble() {
         const newX = touch.clientX - dragStart.x;
         const newY = touch.clientY - dragStart.y;
 
+        const isMobileNow = window.innerWidth < 768;
+        const bubbleW = isMobileNow ? 150 : 280;
+        const bubbleH = isMobileNow ? 60 : 120;
         const minY = 80;
-        const maxX = window.innerWidth - 280;
-        const maxY = window.innerHeight - 80;
+        const maxX = window.innerWidth - bubbleW;
+        const maxY = window.innerHeight - bubbleH;
 
         setPosition({
           x: Math.max(0, Math.min(newX, maxX)),
@@ -128,7 +146,7 @@ export default function AiBubble() {
 
   return (
     <div
-      className="fixed z-50 flex items-center gap-3 group cursor-pointer transition-opacity duration-300"
+      className="fixed z-50 flex items-center gap-1.5 md:gap-3 group cursor-pointer transition-opacity duration-300"
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
@@ -143,19 +161,20 @@ export default function AiBubble() {
       <button
         onClick={handleTransparencyToggle}
         onTouchStart={handleTransparencyToggle}
-        className="bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300 opacity-0 group-hover:opacity-100"
+        className="bg-gray-800 text-white p-1.5 md:p-2 rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300 opacity-0 group-hover:opacity-100"
         aria-label="Toggle transparency"
       >
-        {isTransparent ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+        {isTransparent ? <Eye className="w-3 h-3 md:w-4 md:h-4" /> : <EyeOff className="w-3 h-3 md:w-4 md:h-4" />}
       </button>
-      <div className="bg-white text-gray-900 px-6 py-3 rounded-full shadow-lg border-2 border-blue-500 font-semibold text-base transition-all duration-300 hover:shadow-xl">
-        {buttonText[language]}
+      <div className="bg-white text-gray-900 px-3 py-1.5 md:px-6 md:py-3 rounded-full shadow-lg border-2 border-blue-500 font-semibold text-xs md:text-base transition-all duration-300 hover:shadow-xl">
+        <span className="md:hidden">{buttonText[language]}</span>
+        <span className="hidden md:inline">{buttonTextFull[language]}</span>
       </div>
       <div className="relative">
-        <div className="bg-gradient-to-br from-blue-600 to-purple-600 text-white p-5 rounded-full shadow-xl hover:scale-110 transition-transform duration-300">
-          <Sparkles className="w-7 h-7" />
+        <div className="bg-gradient-to-br from-blue-600 to-purple-600 text-white p-3 md:p-5 rounded-full shadow-xl hover:scale-110 transition-transform duration-300">
+          <Sparkles className="w-4 h-4 md:w-7 md:h-7" />
         </div>
-        <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white"></div>
+        <div className="absolute -top-0.5 -right-0.5 md:-top-1 md:-right-1 w-3 h-3 md:w-4 md:h-4 bg-green-400 rounded-full border-2 border-white"></div>
       </div>
     </div>
   );

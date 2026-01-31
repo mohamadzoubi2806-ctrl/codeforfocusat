@@ -49,19 +49,19 @@ export default function Header() {
   return (
     <header className="bg-white shadow-md sticky top-0 z-[60]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4 gap-4">
+        <div className={`flex items-center py-4 gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group shrink-0">
+          <Link to="/" className={`flex items-center gap-2 group shrink-0 ${isRTL ? 'flex-row-reverse' : ''}`}>
             <div className="relative">
               <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg group-hover:shadow-xl transition-all duration-300 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/whatsapp_image_2025-12-31_at_02.26.34.jpeg"
+                  src="/logo.svg"
                   alt="Focus SAT"
-                  className="w-10 h-10 object-cover rounded-full"
+                  className="w-full h-full object-cover rounded-full"
                 />
               </div>
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-orange-600 rounded-full border-2 border-white"></div>
+              <div className={`absolute -bottom-1 w-4 h-4 bg-orange-600 rounded-full border-2 border-white ${isRTL ? '-left-1' : '-right-1'}`}></div>
             </div>
             <div className="hidden sm:block">
               <h1 className="text-lg font-bold text-gray-900 leading-tight">Focus SAT</h1>
@@ -69,7 +69,7 @@ export default function Header() {
           </Link>
 
           {/* Navigation - Always Visible */}
-          <nav className={`flex gap-2 sm:gap-4 lg:gap-6 items-center flex-wrap justify-end flex-1 ${isRTL ? 'flex-row-reverse' : ''}`}>
+          <nav className={`flex gap-2 sm:gap-4 lg:gap-6 items-center flex-wrap flex-1 ${isRTL ? 'flex-row-reverse justify-start' : 'justify-end'}`}>
             {links.map((link) => {
               const isActive = location.pathname === link.path;
               return (
@@ -91,7 +91,7 @@ export default function Header() {
             <div className="relative">
               <button
                 onClick={() => setLangMenuOpen(!langMenuOpen)}
-                className="flex items-center gap-2 px-3 py-2 lg:px-4 lg:py-2.5 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-md hover:shadow-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105"
+                className={`flex items-center gap-2 px-3 py-2 lg:px-4 lg:py-2.5 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-md hover:shadow-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 ${isRTL ? 'flex-row-reverse' : ''}`}
                 aria-label="Switch language"
               >
                 <Globe size={18} className="lg:w-5 lg:h-5" />
@@ -99,7 +99,7 @@ export default function Header() {
               </button>
 
               {langMenuOpen && (
-                <div className="absolute right-0 mt-3 w-44 bg-white rounded-xl shadow-2xl border border-gray-200 py-2 z-[70] overflow-hidden animate-fadeIn">
+                <div className={`absolute mt-3 w-44 bg-white rounded-xl shadow-2xl border border-gray-200 py-2 z-[70] overflow-hidden animate-fadeIn ${isRTL ? 'left-0' : 'right-0'}`}>
                   {(Object.keys(languageLabels) as Array<keyof typeof languageLabels>).map((lang) => (
                     <button
                       key={lang}
@@ -107,13 +107,13 @@ export default function Header() {
                         setLanguage(lang);
                         setLangMenuOpen(false);
                       }}
-                      className={`w-full text-left px-5 py-3 text-sm font-medium transition-all duration-200 ${
+                      className={`w-full px-5 py-3 text-sm font-medium transition-all duration-200 ${
                         language === lang
-                          ? 'bg-gradient-to-r from-orange-50 to-orange-100 text-orange-600 border-l-4 border-orange-500'
-                          : 'text-gray-700 hover:bg-gray-50 hover:text-orange-600 hover:pl-6'
+                          ? `bg-gradient-to-r from-orange-50 to-orange-100 text-orange-600 ${isRTL ? 'border-r-4 border-orange-500 text-right' : 'border-l-4 border-orange-500 text-left'}`
+                          : `text-gray-700 hover:bg-gray-50 hover:text-orange-600 ${isRTL ? 'text-right hover:pr-6' : 'text-left hover:pl-6'}`
                       }`}
                     >
-                      <span className="flex items-center gap-2">
+                      <span className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
                         <Globe size={16} />
                         {languageLabels[lang]}
                       </span>
