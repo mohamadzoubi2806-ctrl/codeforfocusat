@@ -40,7 +40,7 @@ export default function HomePageEn() {
               The exam takes approximately two hours and focuses on fundamental skills and logical reasoning.
             </p>
             <p className="text-lg text-gray-700 leading-relaxed font-paragraph">
-              In Israel, the SAT is officially recognized by all universities as a recognized alternative to the psychometric exam.
+             In Israel, the SAT exam is officially recognized by universities as an alternative to the Psychometric Exam, making it a smart option for students seeking university admission.
             </p>
           </motion.div>
 
