@@ -100,7 +100,7 @@ export default function ComparisonPageAr() {
                 <tr>
                   <td className="px-6 py-4 font-paragraph text-foreground">التكلفة الإجمالية</td>
                   <td className="px-6 py-4 text-center">
-                    <span className="font-heading text-primary">111$ </span>
+                    <span className="font-heading text-primary">68$ </span>
                   </td>
                   <td className="px-6 py-4 text-center font-paragraph text-secondary">~645-665 شيكل </td>
                 </tr>
