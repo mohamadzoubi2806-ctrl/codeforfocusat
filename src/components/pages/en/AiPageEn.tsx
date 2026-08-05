@@ -5,8 +5,7 @@ import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import { usePageTitle } from '../../../hooks/usePageTitle';
 
-// ✅ YOUR API KEY & FORM ID
-const API_KEY = "AIzaSyDyETJgktJTtUHUWsXx8ZB8ni7Ju3I9ka4";
+// ✅ FORMSPREE FORM ID (public by design)
 const FORM_ID = "xaqqwkbz";
 
 type Message = {
@@ -80,60 +79,30 @@ export default function AiPageEn() {
     setLoading(true);
 
     try {
-      const focusContext = `
-        OFFICIAL INFO:
-        - Name: Focus Teaching Center.
-        - Location: Israel, North District.
-        - Contact: +972 52-382-5927 | focus.satcenter@gmail.com
-        - Instagram: @focus_satcenter
-        - Universities accepted: Technion, Tel Aviv, Hebrew U, etc.
-      `;
-
-      const modelsResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${API_KEY}`);
-      const modelsData = await modelsResponse.json();
-      
-      let validModelName = 'models/gemini-1.5-flash'; 
-      if (modelsData.models) {
-        const bestModel = modelsData.models.find((m: any) => 
-          m.name.includes('gemini') && m.supportedGenerationMethods.includes('generateContent')
-        );
-        if (bestModel) validModelName = bestModel.name;
-      }
-
-      // ✅ INSTRUCTION: SPEAK ENGLISH
-      const promptToSend = `
-        ROLE: You are an expert SAT Tutor and assistant for "Focus Teaching Center".
-        LANGUAGE: Speak English.
-        
-        KNOWLEDGE BASE: ${focusContext}
-
-        STRICT RULES:
-        1. ANSWER DIRECTLY: Solve math problems, give tips, make schedules.
-        2. NO COMPETITORS: Do not recommend other websites.
-        3. PROMOTE FOCUS: If they need a course, recommend Focus Teaching Center.
-
-        User Question: ${userText}
-      `;
-
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/${validModelName}:generateContent?key=${API_KEY}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ contents: [{ parts: [{ text: promptToSend }] }] }),
+      const response = await fetch('/.netlify/functions/gemini', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ language: 'en', message: userText }),
       });
 
-      const data = await response.json();
-      if (data.error) throw new Error(data.error.message);
+      const data = await response.json().catch(() => null);
 
-      if (data.candidates && data.candidates[0].content) {
-        const aiAnswer = data.candidates[0].content.parts[0].text;
-        setMessages((prev) => [...prev, { role: 'assistant', content: aiAnswer }]);
-      } else {
-        throw new Error("No answer candidate found.");
+      if (!response.ok) {
+        throw new Error(
+          response.status === 429 ? 'Too many requests. Please wait a moment and try again.' : 'The assistant is unavailable right now. Please try again.'
+        );
       }
 
-    } catch (error: any) {
-      console.error("AI Error:", error);
-      setMessages((prev) => [...prev, { role: 'error', content: `Error: ${error.message}` }]);
+      const aiAnswer = data?.text;
+      if (typeof aiAnswer !== 'string' || !aiAnswer.trim()) {
+        throw new Error('No answer candidate found.');
+      }
+
+      setMessages((prev) => [...prev, { role: 'assistant', content: aiAnswer }]);
+    } catch (error) {
+      console.error('AI request failed');
+      const detail = error instanceof Error ? error.message : 'The assistant is unavailable right now. Please try again.';
+      setMessages((prev) => [...prev, { role: 'error', content: `Error: ${detail}` }]);
     } finally {
       setLoading(false);
     }
