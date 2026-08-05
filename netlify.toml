@@ -1,0 +1,8 @@
+# Netlify configuration.
+# Intentionally minimal: build command, publish directory and redirects remain
+# configured in the Netlify dashboard. This file only registers the functions
+# directory so the Gemini proxy is deployed.
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
