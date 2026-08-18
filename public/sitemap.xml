@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sitemap for focusat.org — Focus Teaching Center (SAT preparation).
+
+  NOTE: this reflects the site's current URL structure, in which a single URL
+  serves whichever language is held in React state. Once language-prefixed
+  routes (/ar, /en, /he) ship, this file must be regenerated with one entry per
+  language plus xhtml:link hreflang alternates.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://focusat.org/</loc>
+    <lastmod>2026-08-18</lastmod>
+  </url>
+
+  <url>
+    <loc>https://focusat.org/what-is-sat</loc>
+    <lastmod>2026-08-18</lastmod>
+  </url>
+
+  <url>
+    <loc>https://focusat.org/universities</loc>
+    <lastmod>2026-08-18</lastmod>
+  </url>
+
+  <url>
+    <loc>https://focusat.org/comparison</loc>
+    <lastmod>2026-08-18</lastmod>
+  </url>
+
+  <url>
+    <loc>https://focusat.org/course-plan</loc>
+    <lastmod>2026-08-18</lastmod>
+  </url>
+
+  <url>
+    <loc>https://focusat.org/why-focus</loc>
+    <lastmod>2026-08-18</lastmod>
+  </url>
+
+  <url>
+    <loc>https://focusat.org/contact</loc>
+    <lastmod>2026-08-18</lastmod>
+  </url>
+
+  <url>
+    <loc>https://focusat.org/ai-tutor</loc>
+    <lastmod>2026-08-18</lastmod>
+  </url>
+
+</urlset>
